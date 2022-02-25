@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply text-lg font-bold
+  }
+
+  h3 {
+    @apply text-base font-bold
+  }
+}
+
+.line-1 {
+  @apply break-words line-clamp-1
+}
+
+.line-2 {
+  @apply break-words line-clamp-2
+}
+
+.line-3 {
+  @apply break-words line-clamp-3
+}
+
+.line-4 {
+  @apply break-words line-clamp-4
+}
+
+.line-5 {
+  @apply break-words line-clamp-5
+}
