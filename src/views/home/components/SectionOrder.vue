@@ -1,17 +1,17 @@
 <template>
   <!-- 最近订单 -->
-  <section class="space-y-3">
+  <section>
     <div class="flex items-center">
       <h2>最近订单</h2>
-      <router-link 
-        v-show="order.list.length > 0" 
-        to="/data/order" 
+      <router-link
+        v-show="order.list.length > 0"
+        to="/order/data"
         class="ml-auto text-gray-500 cursor-pointer hover:text-gray-800"
       >
         查看更多 >
       </router-link>
     </div>
-    <div v-if="order.list.length > 0" class="overflow-x-auto text-sm">
+    <div v-if="order.list.length > 0" class="mt-3 overflow-x-auto text-sm">
       <table class="table table-zebra w-full">
         <!-- head -->
         <thead>
@@ -37,9 +37,8 @@
         </tbody>
       </table>
     </div>
-    <div v-else class="text-center -space-y-2 pb-4">
-      <img :src="emptyImg" alt="缺省" width="240" height="240" class="w-60 h-60 mx-auto">
-      <p class="text-gray-500">暂无订单</p>
+    <div v-else class="flex items-center justify-center">
+      <base-empty text="暂无订单" />
     </div>
   </section>
 </template>
@@ -54,7 +53,7 @@ export default {
     const order = reactive({
       list: []
     })
-    api.get("/home/getOrdersRecent").then((res) => { 
+    api.get("/home/getOrdersRecent").then((res) => {
       order.list = res.data.data
     })
     return {

@@ -3,17 +3,19 @@
     <!-- 订单分析 -->
     <section-analyze />
     <section-order />
-    <section></section>
+    <section-todo />
   </main>
 </template>
 
 <script>
 import SectionAnalyze from './components/SectionAnalyze.vue'
 import SectionOrder from './components/SectionOrder.vue'
+import SectionTodo from './components/SectionTodo.vue'
 export default {
   components: {
     SectionAnalyze,
-    SectionOrder
+    SectionOrder,
+    SectionTodo
   }
 }
 </script>

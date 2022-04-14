@@ -6,8 +6,10 @@ import router from './router'
 const app = createApp(App)
 
 import BaseChart from './components/BaseChart.vue'
+import BaseEmpty from './components/BaseEmpty.vue'
 
 app.component('BaseChart', BaseChart)
+app.component('BaseEmpty', BaseEmpty)
 
 app.directive('resize', {
   // 当被绑定的元素挂载到 DOM 中时……

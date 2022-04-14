@@ -165,7 +165,7 @@
 </template>
 
 <script>
-import { reactive, ref, toRefs } from 'vue'
+import { reactive, ref, toRefs, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { changeFullScreen, listenerEvent } from '../../until/fullScreen.js'
 export default {
@@ -173,6 +173,11 @@ export default {
     const router = useRouter()
     const route = useRoute()
     const path = ref(route.path)
+
+    watch(() => route.path,(value) => {
+      path.value = value
+    })
+
     const isCollapse = ref(false)
     // 全屏切换
     const data = reactive({
@@ -189,7 +194,6 @@ export default {
       handleFullScreen,
       ...params,
       jumpTo(link) {
-        path.value = link
         router.push(link)
       }
     }
