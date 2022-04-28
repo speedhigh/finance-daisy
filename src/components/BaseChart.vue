@@ -31,7 +31,6 @@ export default {
     return {
       chart,
       resize() {
-        console.log('aaa')
         i ? myChart.resize() : setTimeout(() => { myChart.resize() }, 800 )
         i += 1
       }

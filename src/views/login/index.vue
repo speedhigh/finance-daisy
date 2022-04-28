@@ -70,7 +70,7 @@ export default {
       loginDisabled,
       login() {
         loginDisabled.value = true
-        if(!form.phone || !form.password) { 
+        if(!form.phone || !form.password) {
           Message({ text: '请输入账号或密码' })
           setTimeout(() => { loginDisabled.value = false }, 1000 )
           return
