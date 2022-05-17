@@ -1,47 +1,91 @@
 <template>
-  <div class="btn-group">
-    <button class="btn" :class="active === 1 ? 'btn-disabled' : ''">«</button>
-    <button class="btn" :class="active === 1 ? 'btn-active' : ''">1</button>
-    <button class="btn">...</button>
-    <button class="btn">5</button>
-    <button class="btn">6</button>
-    <button class="btn">7</button>
-    <button class="btn">8</button>
-    <button class="btn">9</button>
-    <button class="btn">...</button>
-    <button class="btn">n</button>
-    <button class="btn">»</button>
+  <div>
+    <slot v-if="localList.length > 0" :list="localList" />
+    <div v-if="showEmpty" class="flex items-center justify-center">
+      <base-empty text="暂无信息" class="mb-48 py-12" />
+    </div>
+    <div class="flex justify-center mt-4">
+      <my-pagination
+        v-model:currentPage="currentPage"
+        :total="total" 
+        :size="size" 
+        @change="changePage" 
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, ref } from "vue"
+import { ref, watch } from 'vue'
+import mitt from 'mitt'
+import api from '/src/api/index.js'
+import { pickBy } from 'lodash'
+import MyPagination from './Pagination/MyPagination.vue'
 export default {
+  components: {
+    MyPagination
+  },
   props: {
     size: {
       type: Number,
       default: 7
     },
+    url: {
+      type: String,
+      required: true
+    },
+    params: {
+      type: Object,
+      default: () => {}
+    }
   },
   setup(props) {
-    const total = ref(55)
-    const active = ref(1)
-    // 分页数
-    const totalPages = computed(() => {
-      Math.ceil(total.value / props.size)
+    const BasePaginationMitt = mitt()
+    BasePaginationMitt.on('refresh',() => { askApi() })
+    const showEmpty = ref(false)
+    const total = ref(0)
+    const currentPage = ref(1)
+    const localList = ref([])
+    const askApi = function(more = true) {
+      let newParams = {}
+      if(!more) currentPage.value = 1
+      Object.assign(newParams, props.params, { current: currentPage.value, size: props.size })
+      api.get(props.url, pickBy(newParams)).then((res) => {
+        if(res.data.code === 20000) {
+          showEmpty.value = (res.data.data.total === 0)
+          total.value = res.data.data.total
+          localList.value = res.data.data.records
+        } else {
+          total.value = 0
+          localList.value = []
+        }
+      })
+    }
+    askApi()
+    watch(props.params, (value) => {
+      console.log('params',value)
+      askApi(false)
+    }, {
+      deep: true
     })
-    // 当前页码
-    const currentNo = ref((totalPages.value > 0) ? 1 : 0)
+    watch(() => props.size, value => {
+      askApi()
+    })
+    watch(() => props.url, value => {
+      askApi()
+    })
     return {
+      showEmpty,
+      BasePaginationMitt,
       total,
-      active,
-      totalPages,
-      currentNo
+      currentPage,
+      localList,
+      askApi,
+      changePage(page) {
+        currentPage.value = page
+        askApi()
+      }
     }
   }
 }
 </script>
-
-<style scoped>
-  
-</style>
