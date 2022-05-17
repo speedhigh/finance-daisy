@@ -3,7 +3,7 @@
 
     <!-- left 侧边栏 -->
     <div 
-      class="border-r border-gray-200 flex-shrink-0"
+      class="border-r border-gray-200 flex-shrink-0 bg-base-100"
       :class="isCollapse ? 'w-20' : 'w-56'"
     >
       <div class="p-4 cursor-default">
@@ -11,7 +11,7 @@
         <p v-show="!isCollapse" class="text-center mt-1 text-gray-500 text-sm">v 1.0.0</p>
         <div v-show="isCollapse" class="text-white text-3xl font-bold bg-primary w-10 h-10 rounded-2xl text-center leading-10 mx-auto">木</div>
       </div>
-      <ul class="menu p-3 bg-base-100 space-y-2">
+      <ul class="menu p-3 space-y-2">
 
         <!-- 首页 -->
         <li :class="{'bg-primary-focus text-primary-content rounded-lg' : path === '/home'}">
@@ -121,7 +121,7 @@
     <!-- right 主体 -->
     <div class="flex-grow w-full h-screen flex flex-col">
       <!-- header 头部 -->
-      <div class="flex-shrink-0">
+      <div class="flex-shrink-0 bg-base-100">
         <div class="w-full p-6 border-b border-gray-100 flex items-center">
           <div class="pr-4 mr-6 border-r border-gray-300 cursor-pointer" @click="isCollapse = !isCollapse">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +157,7 @@
         </div>
       </div>
       <!-- body -->
-      <div class="flex-grow w-full bg-base-300 p-5">
+      <div class="flex-grow w-full bg-base-200 p-5">
         <router-view></router-view>
       </div>
     </div>
