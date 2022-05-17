@@ -1,21 +1,30 @@
 <template>
   <main class="w-full h-full grid grid-cols-2 gap-4">
     <!-- 订单分析 -->
-    <section-analyze />
+    <!-- <section-analyze />
     <section-order />
-    <section-todo />
+    <section-todo /> -->
   </main>
 </template>
 
 <script>
-import SectionAnalyze from './components/SectionAnalyze.vue'
-import SectionOrder from './components/SectionOrder.vue'
-import SectionTodo from './components/SectionTodo.vue'
+// import SectionAnalyze from './components/SectionAnalyze.vue'
+// import SectionOrder from './components/SectionOrder.vue'
+// import SectionTodo from './components/SectionTodo.vue'
+import app from '/src/App.vue'
 export default {
   components: {
-    SectionAnalyze,
-    SectionOrder,
-    SectionTodo
+    app,
+    // SectionAnalyze,
+    // SectionOrder,
+    // SectionTodo
+  },
+  setup() {
+    app.setup().showLoadingPage.value = false
+    console.log('aa')
+    return {
+
+    }
   }
 }
 </script>

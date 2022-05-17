@@ -76,7 +76,7 @@ const routes = [
         component:() => import('../views/order/index.vue'),
         meta: {
           name: 'OrderData',
-          breadcrumb : [{ text: '订单数据', url: '/order/data' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '订单数据', url: '/order/data' }]
         }
       }
     ]
@@ -98,7 +98,7 @@ const routes = [
         component:() => import('../views/customer/cnewb/index.vue'),
         meta: {
           name: 'CnewbCustomer',
-          breadcrumb : [{ text: '客户资料', url: '/customer/cnewb' }, { text: '大客户资料', url: '/customer/cnewb' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '大客户资料', url: '/customer/cnewb' }]
         }
       },
       // 大客户数据详情
@@ -108,7 +108,7 @@ const routes = [
         component:() => import('../views/customer/cnewb/detail.vue'),
         meta: {
           name: 'CnewbCustomer',
-          breadcrumb : [{ text: '客户资料', url: '/customer/cnewb' }, { text: '大客户资料', url: '/customer/cnewb' }, { text: '大客户资料详情', url: '/customer/cnewb/detail/:id' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '大客户资料', url: '/customer/cnewb' }, { text: '大客户资料详情', url: '/customer/cnewb/detail/:id' }]
         }
       },
       // 高级经理数据
@@ -118,7 +118,7 @@ const routes = [
         component:() => import('../views/customer/newb/index.vue'),
         meta: {
           name: 'NewbCustomer',
-          breadcrumb : [{ text: '客户资料', url: '/customer/newb' }, { text: '高级经理资料', url: '/customer/newb' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '高级经理资料', url: '/customer/newb' }]
         }
       },
       // 高级经理数据详情
@@ -128,7 +128,7 @@ const routes = [
         component:() => import('../views/customer/newb/detail.vue'),
         meta: {
           name: 'NewbCustomer',
-          breadcrumb : [{ text: '客户资料', url: '/customer/newb' }, { text: '高级经理资料', url: '/customer/newb' }, { text: '高级经理资料详情', url: '/customer/newb/detail/:id' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '高级经理资料', url: '/customer/newb' }, { text: '高级经理资料详情', url: '/customer/newb/detail/:id' }]
         }
       },
       // 普通用户数据
@@ -138,7 +138,7 @@ const routes = [
         component:() => import('../views/customer/user/index.vue'),
         meta: {
           name: 'UserCustomer',
-          breadcrumb : [{ text: '客户资料', url: '/customer/newb' }, { text: '普通用户数据', url: '/customer/user' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '普通用户数据', url: '/customer/user' }]
         }
       },
     ]
@@ -158,6 +158,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from,next) => {
+  // showLoading -> 1 显示  0 不显示
+  window.sessionStorage.setItem("showLoading", 1)
   if(to.path === '/login') return next()
   const tokenStr = window.sessionStorage.getItem("token")
   if(!tokenStr) return next('/login')

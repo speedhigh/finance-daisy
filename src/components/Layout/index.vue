@@ -6,6 +6,7 @@
       <!-- header -->
       <div class="py-1">
         <base-bredcrumb />
+        <router-view></router-view>
       </div>
     </div>
   </div>

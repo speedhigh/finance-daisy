@@ -6,7 +6,7 @@
       class="flex items-center"
     >
       <div
-        :class="$route.meta['breadcrumb']['length'] - index === 1 ? 'cursor-default text-2xl font-bold' : 'cursor-pointer hover:font-bold hover:underline'"
+        :class="$route.meta['breadcrumb']['length'] - index === 1 ? 'cursor-default text-2xl font-bold' : 'cursor-pointer hover:font-bold hover:underline hover:text-primary-focus'"
         @click="$router.push(item['url'])"
       >
         {{ item['text'] }}
