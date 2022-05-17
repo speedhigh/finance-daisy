@@ -46,7 +46,7 @@ const routes = [
         component:() => import('../views/withdraw/todo/index.vue'),
         meta: {
           name: 'WithdrawTodo',
-          breadcrumb : [{ text: '提现管理', url: '/withdraw/todo' }, { text: '待办信息', url: '/withdraw/todo' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '待办信息', url: '/withdraw/todo' }]
         }
       },
       // 提现数据
@@ -56,7 +56,7 @@ const routes = [
         component:() => import('../views/withdraw/data/index.vue'),
         meta: {
           name: 'WithdrawData',
-          breadcrumb : [{ text: '提现管理', url: '/withdraw/todo' }, { text: '提现数据', url: '/withdraw/data' }]
+          breadcrumb : [{ text: '首页', url: '/' }, { text: '提现数据', url: '/withdraw/data' }]
         }
       },
     ]
@@ -129,6 +129,16 @@ const routes = [
         meta: {
           name: 'NewbCustomer',
           breadcrumb : [{ text: '客户资料', url: '/customer/newb' }, { text: '高级经理资料', url: '/customer/newb' }, { text: '高级经理资料详情', url: '/customer/newb/detail/:id' }]
+        }
+      },
+      // 普通用户数据
+      {
+        path: '/customer/user',
+        name: 'UserList',
+        component:() => import('../views/customer/user/index.vue'),
+        meta: {
+          name: 'UserCustomer',
+          breadcrumb : [{ text: '客户资料', url: '/customer/newb' }, { text: '普通用户数据', url: '/customer/user' }]
         }
       },
     ]
