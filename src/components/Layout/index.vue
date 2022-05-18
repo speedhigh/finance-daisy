@@ -1,30 +1,34 @@
 <template>
   <div class="relative" :class="{'overflow-hidden': showLoadingPage}">
-    <!-- loadingPage -->
+    <!-- 加载页 -->
     <base-loading-page
       v-show="showLoadingPage"
-      class="fixed top-0 w-full h-screen z-50" 
+      class="fixed top-0 w-full h-screen z-50"
     />
-    <!-- body -->
-    <div class="fixed top-0 inset-x-0" :class="{'max-h-screen overflow-hidden': showLoadingPage}">
-      <div class="w-full min-h-screen bg-gradient-to-br from-indigo-100  to-indigo-300 p-4 backdrop-blur-lg">
-        <div class="rounded-2xl bg-[rgba(243,244,246,0.8)] backdrop-blur-lg w-full h-full py-4 pl-72 shadow-2xl relative min-h-[96vh]">
-          <!-- nav -->
-          <layout-menu />
-          <!-- header -->
-          <div class="py-2 pr-10 flex items-center">
+    <!-- 侧边栏(定位) -->
+    <layout-menu class="fixed left-8 top-9 z-20"/>
+    <!-- 主体 -->
+    <div class="fixed top-0 inset-x-0 h-screen" :class="{'max-h-screen overflow-hidden': showLoadingPage}">
+      <div class="w-full h-screen bg-gradient-to-br from-indigo-100  to-indigo-300 p-4 backdrop-blur-lg">
+        <div class="rounded-2xl bg-[rgba(243,244,246,0.8)] backdrop-blur-lg w-full h-full py-4 pl-72 shadow-2xl min-h-[96vh] overflow-y-scroll">
+          <!-- 头部 -->
+          <header class="pr-6 flex items-center">
             <!-- 面包屑 -->
             <layout-bredcrumb />
+            <!-- 搜索框 -->
+            <div class="w-[400px] h-10 border rounded-full border-gray-300 bg-white ml-20 flex items-center px-4">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="text" class="ml-4 w-full h-full text-sm" placeholder="请输入您要索的订单信息">
+            </div>
             <div class="ml-auto flex items-center">
-              <div class="w-[400px] h-10 border rounded-full border-gray-500 bg-white mr-20 flex items-center px-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input type="text" class="ml-4 w-full h-full text-sm" placeholder="请输入您要索的订单信息">
-              </div>
               <!-- avatar -->
               <div class="flex-shrink-0 dropdown dropdown-hover dropdown-end">
-                <div tabindex="0" class="flex items-center cursor-pointer pb-3">
+                <div 
+                  tabindex="0" 
+                  class="flex items-center cursor-pointer py-2 pl-3 pr-4 rounded-lg bg-gray-100 shadow-sm hover:rounded-b-none hover:rounded-t-box hover:shadow-xl"
+                >
                   <div class="avatar online">
                     <div class="w-10 rounded-full">
                       <img src="https://api.lorem.space/image/face?hash=28212" />
@@ -34,8 +38,13 @@
                     <p class="text-sm font-bold">财务</p>
                     <p class="text-gray-400 text-xs">财务-收纳</p>
                   </div>
+                  <div class="ml-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu p-1 shadow-lg bg-base-100 rounded-box w-40 text-sm">
+                <ul tabindex="0" class="dropdown-content menu p-1 shadow-xl bg-gray-100 rounded-b-box w-[169.2px] text-sm">
                   <li>
                     <a @click="$router.push('/withdraw/todo')">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -53,6 +62,10 @@
                 </ul>
               </div>
             </div>
+          </header>
+          <!-- content -->
+          <div class="pr-6">
+            <router-view />
           </div>
         </div>
       </div>

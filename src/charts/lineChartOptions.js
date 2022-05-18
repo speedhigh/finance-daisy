@@ -25,7 +25,7 @@ export default function barChartOptions(xData, yData) {
         smooth: true,
         data: yData,
         itemStyle:{
-          color: '#a991f7'
+          color: '#F000B8'
         },
         label: {
           show: true,

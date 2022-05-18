@@ -1,5 +1,5 @@
 <template>
-  <div class="text-base leading-none">
+  <div class="text-base">
     <router-view />
   </div>
 </template>
@@ -10,6 +10,9 @@ input, button, select, textarea {
 }
 textarea { 
   resize: none !important
+}
+::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
 }
 </style>
 
