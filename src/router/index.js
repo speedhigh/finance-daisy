@@ -158,8 +158,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to,from,next) => {
-  // showLoading -> 1 显示  0 不显示
-  window.sessionStorage.setItem("showLoading", 1)
   if(to.path === '/login') return next()
   const tokenStr = window.sessionStorage.getItem("token")
   if(!tokenStr) return next('/login')

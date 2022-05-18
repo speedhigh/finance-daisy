@@ -11,17 +11,16 @@
 // import SectionAnalyze from './components/SectionAnalyze.vue'
 // import SectionOrder from './components/SectionOrder.vue'
 // import SectionTodo from './components/SectionTodo.vue'
-import app from '/src/App.vue'
+import emitter from '/src/until/eventbus'
 export default {
   components: {
-    app,
     // SectionAnalyze,
     // SectionOrder,
     // SectionTodo
   },
   setup() {
-    app.setup().showLoadingPage.value = false
-    console.log('aa')
+    emitter.emit('changeLoadingState', true)
+    setTimeout(() => emitter.emit('changeLoadingState', false), 800)
     return {
 
     }
