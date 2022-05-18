@@ -2,7 +2,7 @@
   <div class="py-3">
     <base-start />
     <!-- 订单分析 -->
-    <div class="mt-4 w-full bg-white shadow-lg p-6 rounded-2xl">
+    <div class="mt-5 w-full bg-white shadow-lg p-6 rounded-2xl">
       <h2>订单分析</h2>
       <div class="grid grid-cols-3 gap-x-5 mt-3">
         <!-- 总成交量 -->
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-4 w-full flex space-x-4">
+    <div class="mt-5 w-full flex space-x-5">
       <div class="w-1/3 h-96 bg-white rounded-2xl shadow-2xl">
 
       </div>
