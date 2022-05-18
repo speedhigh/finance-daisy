@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed left-10 w-60 bg-white rounded-2xl shadow-2xl h-[92.5vh]">
+  <div class="fixed left-5 w-60 bg-white rounded-2xl shadow-2xl h-[92.5vh]">
     <div class="px-7 py-5 flex space-x-2">
       <img src="/src/assets/logo.png" alt="logo" class="flex-shrink-0">
       <div>
