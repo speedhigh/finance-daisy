@@ -100,7 +100,7 @@ export default {
 
 <style scoped>
 .chart-box {
-  @apply mt-3 w-full h-72 rounded-2xl border px-1 pt-5 pb-2
+  @apply mt-3 w-full h-72 rounded-box border px-1 pt-5 pb-2
 }
 .tag {
   @apply w-1.5 h-1.5 rounded-full bg-indigo-600

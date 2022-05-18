@@ -6,13 +6,13 @@
       class="fixed top-0 w-full h-screen z-50"
     />
     <!-- 侧边栏(定位) -->
-    <layout-menu class="fixed left-8 top-9 z-20"/>
+    <layout-menu class="fixed left-9 top-9 z-20"/>
     <!-- 主体 -->
     <div class="fixed top-0 inset-x-0 h-screen" :class="{'max-h-screen overflow-hidden': showLoadingPage}">
-      <div class="w-full h-screen bg-gradient-to-br from-indigo-100  to-indigo-300 p-4 backdrop-blur-lg">
-        <div class="rounded-2xl bg-[rgba(243,244,246,0.8)] backdrop-blur-lg w-full h-full py-4 pl-72 shadow-2xl min-h-[96vh] overflow-y-scroll">
+      <div class="w-full h-screen bg-gradient-to-br from-indigo-200  to-indigo-300 p-4 backdrop-blur-lg">
+        <div class="rounded-box bg-[rgba(243,244,246,0.8)] backdrop-blur-lg w-full h-full pb-6 pl-72 pr-6 shadow-inner min-h-[96vh] overflow-y-scroll">
           <!-- 头部 -->
-          <header class="pr-6 flex items-center">
+          <header class="flex items-center py-4">
             <!-- 面包屑 -->
             <layout-bredcrumb />
             <!-- 搜索框 -->
@@ -64,7 +64,7 @@
             </div>
           </header>
           <!-- content -->
-          <div class="pr-6">
+          <div>
             <router-view />
           </div>
         </div>
