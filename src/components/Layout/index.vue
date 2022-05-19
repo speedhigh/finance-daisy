@@ -9,8 +9,8 @@
     <layout-menu class="fixed left-9 top-9 z-20"/>
     <!-- 主体 -->
     <div class="fixed top-0 inset-x-0 h-screen" :class="{'max-h-screen overflow-hidden': showLoadingPage}">
-      <div class="w-full h-screen bg-gradient-to-br from-indigo-200  to-indigo-300 p-4 backdrop-blur-lg">
-        <div class="rounded-box bg-[rgba(243,244,246,0.8)] backdrop-blur-lg w-full h-full pb-6 pl-72 pr-6 shadow-inner min-h-[96vh] overflow-y-scroll">
+      <div class="w-full h-screen bg-gradient-to-br from-indigo-200  to-indigo-300 p-4">
+        <div class="rounded-box bg-[rgba(243,244,246,0.9)] backdrop-blur w-full h-full pb-6 pl-72 pr-6 shadow-xl shadow-rose-200 min-h-[96vh] overflow-y-scroll">
           <!-- 头部 -->
           <header class="flex items-center py-4">
             <!-- 面包屑 -->
@@ -27,16 +27,16 @@
               <div class="flex-shrink-0 dropdown dropdown-hover dropdown-end">
                 <div 
                   tabindex="0" 
-                  class="flex items-center cursor-pointer py-2 pl-3 pr-4 rounded-lg bg-gray-100 shadow-sm hover:rounded-b-none hover:rounded-t-box hover:shadow-xl"
+                  class="flex items-center cursor-pointer py-2 pl-3 pr-3 rounded-lg bg-gray-100 shadow-sm hover:rounded-b-none hover:rounded-t-box hover:shadow-xl"
                 >
                   <div class="avatar online">
                     <div class="w-10 rounded-full">
                       <img src="https://api.lorem.space/image/face?hash=28212" />
                     </div>
                   </div>
-                  <div class="ml-3 space-y-0.5">
-                    <p class="text-sm font-bold">财务</p>
-                    <p class="text-gray-400 text-xs">财务-收纳</p>
+                  <div class="ml-3 space-y-0.5 w-20">
+                    <p class="text-sm font-bold line-1">财务</p>
+                    <p class="text-xs line-1 opacity-60">财务-收纳</p>
                   </div>
                   <div class="ml-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -44,7 +44,7 @@
                     </svg>
                   </div>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu p-1 shadow-xl bg-gray-100 rounded-b-box w-[169.2px] text-sm">
+                <ul tabindex="0" class="dropdown-content menu p-1 shadow-xl bg-gray-100 rounded-b-box w-48 text-sm">
                   <li>
                     <a @click="$router.push('/withdraw/todo')">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

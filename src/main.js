@@ -6,8 +6,14 @@ import router from './router'
 const app = createApp(App)
 
 import BaseChart from './components/BaseChart.vue'
+import BaseDropdown from './components/BaseDropdown.vue'
+import EmptyData from './components/Empty/EmptyData.vue'
+import EmptyOrder from './components/Empty/EmptyOrder.vue'
 
 app.component('BaseChart', BaseChart)
+app.component('BaseDropdown', BaseDropdown)
+app.component('EmptyData', EmptyData)
+app.component('EmptyOrder', EmptyOrder)
 
 app.directive('resize', {
   // 当被绑定的元素挂载到 DOM 中时……

@@ -11,7 +11,7 @@
       <p class="mt-4 text-lg">{{ text }}</p>
       <div class="mt-5 text-right space-x-2">
         <button 
-          class="btn btn-outline border-gray-300 text-gray-500 hover:border-primary-focus hover:bg-primary hover:text-primary-focus"
+          class="btn btn-outline border-primary-focus text-primary-focus hover:bg-primary-focus hover:text-white hover:border-none"
           @click.stop="cancelCallback"
         >
           取消
