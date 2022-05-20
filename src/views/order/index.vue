@@ -31,7 +31,7 @@
         class="mb-2 mx-2"
       />
       <!-- 公司 -->
-      <base-dropdown 
+      <base-dropdown
         title="身份" 
         :options="companyOptions"
         class="mb-2 mx-2"

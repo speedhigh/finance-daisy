@@ -81,8 +81,29 @@
         </router-link>
       </li>
     </ul>
+    <!-- <div class="mt-32">
+      <AudioPlayer
+        autoplay
+        :option="{
+          src: '/src/assets/music/岸部眞明 - The End of the World.mp3',
+          title: 'The End of the World',
+          coverImage: 'https://api.lorem.space/image/album?w=120&h=120',
+          progressBarColor:'red'
+        }" 
+      />
+    </div> -->
   </div>
 </template>
+
+<script>
+import AudioPlayer from 'vue3-audio-player'
+import 'vue3-audio-player/dist/style.css'
+export default {
+  components: {
+    AudioPlayer
+  }
+}
+</script>
 
 <style scoped>
 .option:active {
