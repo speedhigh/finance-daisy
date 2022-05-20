@@ -1,7 +1,7 @@
 <template>
   <div
     class="flex items-center text-sm"
-    @mouseenter="hover = true"
+    @click="hover = !hover"
     @mouseleave="hover = false"
   >
     <p class="flex-shrink-0">{{ title }}：</p>
@@ -11,10 +11,23 @@
         type="text" 
         readonly
         placeholder="请选择"
-        class="cursor-pointer input input-sm input-bordered w-48"
-        :class="{'border-gray-400': hover === true && !selValue, 'border-primary-focus': selValue}"
+        class="cursor-pointer input input-sm input-bordered w-48 hover:border-gray-400"
+        :class="{'border-gray-400': hover === true && !selValue, 'shadow-sm shadow-indigo-400': selValue}"
       />
-      <svg 
+      <!-- 清除按钮 -->
+      <svg
+        v-show="selValue"
+        xmlns="http://www.w3.org/2000/svg" 
+        class="h-5 w-5 text-gray-300 absolute right-2 top-1.5 cursor-pointer hover:text-gray-400"
+        viewBox="0 0 20 20" 
+        fill="currentColor"
+        @click.stop="clear"
+      >
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+      </svg>
+      <!-- 箭头 -->
+      <svg
+        v-show="!selValue"
         xmlns="http://www.w3.org/2000/svg" 
         class="h-5 w-5 text-gray-400 absolute right-2 top-1.5 cursor-pointer transition duration-300"
         :class="{'text-gray-700 rotate-180': hover === true}"
@@ -68,6 +81,11 @@ export default {
         selValue.value = label
         emit('change', label, index)
         setTimeout(() => hover.value = false, 50)
+      },
+      clear() {
+        active.value = -1
+        selValue.value = ''
+        emit('clear')
       }
     }
   }

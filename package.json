@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.3.1",
+    "@vuepic/vue-datepicker": "^3.2.1",
     "axios": "^0.25.0",
     "crypto-js": "^4.1.1",
     "daisyui": "^2.14.3",
