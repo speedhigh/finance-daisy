@@ -12,10 +12,7 @@
     <div class="ml-auto flex items-center space-x-8">
       <!-- music -->
       <div class="dropdown dropdown-end dropdown-hover">
-        <div 
-          class="w-12 h-12 rounded-full bg-gray-50 cursor-pointer text-center p-2.5 hover:text-secondary"
-          :class="{'text-secondary shadow-pink-200 shadow-lg': isP}"
-        >
+        <div class="w-12 h-12 rounded-full bg-gray-50 cursor-pointer text-center p-2.5 text-secondary shadow-pink-200 shadow-lg">
           <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer inline-block" viewBox="0 0 20 20" fill="currentColor">
             <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
           </svg>
@@ -26,13 +23,11 @@
             autoplay="autoplay"
             :option="{
               src: '/src/assets/music/岸部眞明 - The End of the World.mp3',
-              title: 'The End of the World',
+              title: 'Music',
               coverImage: 'https://api.lorem.space/image/album?w=100&h=100',
               progressBarColor:'#F000B8',
               indicatorColor: '#F000B8'
             }"
-            @play="audioPlay"
-            @pause="audioPause"
           />
         </div>
       </div>
@@ -97,7 +92,6 @@ export default {
     // const play = function() {
     //   audioRef.value.play()
     // }
-    const isP = ref(0)
     onMounted(() => {
       audioRef.value.audioPlayer.autoplay = 'autoplay'
       audioRef.value.audioPlayer.loop = true
@@ -107,23 +101,12 @@ export default {
     return {
       audioRef,
       // play,
-      isP,
       quit() {
         Dialog({ text: '您确定要退出登录吗？' }).then(() => {
           sessionStorage.removeItem('token')
           router.replace('/login')
           Message({ text: '您已成功退出登录', type: 'success' })
         })
-      },
-      audioPlay() {
-        console.log('play---')
-        isP.value = 1
-        return
-      },
-      audioPause() {
-        console.log('audioPause------')
-        isP.value = 0
-        return
       }
     }
   }

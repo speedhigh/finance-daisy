@@ -12,7 +12,13 @@ textarea {
   resize: none !important
 }
 ::-webkit-scrollbar {
-  display: none; /* Chrome Safari */
+  @apply h-3 rounded-b-md bg-indigo-50
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-indigo-300 rounded cursor-pointer hover:bg-indigo-400
+}
+::-webkit-scrollbar:vertical {
+  @apply hidden
 }
 </style>
 

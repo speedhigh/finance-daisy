@@ -10,7 +10,7 @@
     <!-- 主体 -->
     <div class="fixed top-0 inset-x-0 h-screen" :class="{'max-h-screen overflow-hidden': showLoadingPage}">
       <div class="w-full h-screen bg-gradient-to-br from-indigo-200  to-indigo-300 p-4">
-        <div class="rounded-box bg-[rgba(243,244,246,0.9)] backdrop-blur w-full h-full pb-6 pl-72 pr-6 shadow-xl shadow-rose-200 min-h-[96vh] overflow-y-scroll">
+        <div class="rounded-box bg-[rgba(243,244,246,0.9)] backdrop-blur w-full h-full pb-6 pl-72 pr-6 shadow-xl shadow-secondary/20 min-h-[96vh] overflow-y-scroll">
           <!-- 头部 -->
           <layout-header />
           <!-- content -->

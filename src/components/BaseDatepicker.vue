@@ -8,7 +8,7 @@
       format="yyyy/MM/dd"
       range multiCalendars
       :enableTimePicker="false"
-      inputClassName="dp-custom-input" 
+      :inputClassName="date ? 'dp-custom-input-focus' : 'dp-custom-input'" 
       menuClassName="dp-custom-menu"
       :format="format"
       @update:modelValue="handleDate"
@@ -36,33 +36,41 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
+import dayjs from 'dayjs'
 import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 export default {
   components: { 
     Datepicker
   },
-  setup() {
+  emits: ['change', 'clear'],
+  setup(params, {emit}) {
     const date = ref()
     const dp = ref()
     const selectDate = () => {
-      dp.value.selectDate();
+      dp.value.selectDate()
     }
     const dayText = ['日', '一', '二', '三', '四', '五', '六']
-    onMounted(() => {
-      // const startDate = new Date()
-      // const endDate = new Date(new Date().setDate(startDate.getDate() + 7))
-      // date.value = [startDate, endDate]
-    })
     return {
       date,
       dp,
       dayText,
       selectDate,
-      handleDate(data) {
-        console.log(date.value[0])
-      }
+      handleDate() {
+        if(!date.value) {
+          emit('clear')
+          return
+        }
+        if(date.value[0] && date.value[1]) {
+          emit('change', dayjs(date.value[0]).format('YYYY-MM-DD'), dayjs(date.value[1]).format('YYYY-MM-DD'))
+          return
+        }
+        if(date.value[0] && !date.value[1]) {
+          emit('change', dayjs(date.value[0]).format('YYYY-MM-DD'), '')
+          return
+        }
+      },
     }
   }
 }
@@ -71,7 +79,10 @@ export default {
 
 <style>
 .dp-custom-input {
-  @apply w-72 rounded-lg text-sm
+  @apply w-72 rounded-lg text-sm placeholder:text-gray-300
+}
+.dp-custom-input-focus {
+  @apply w-72 rounded-lg text-sm border-gray-300 shadow-sm shadow-indigo-400
 }
 .dp-custom-menu {
   @apply border-none rounded-xl shadow-lg shadow-purple-200

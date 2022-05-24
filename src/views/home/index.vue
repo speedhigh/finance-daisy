@@ -121,11 +121,9 @@ import barChartOptions from '/src/charts/barChartOptions.js'
 import lineChartOptions from '/src/charts/lineChartOptions.js'
 import emitter from '/src/until/eventbus'
 import BaseStart from '/src/components/BaseStart.vue'
-import EmptyOrder from '../../components/Empty/EmptyOrder.vue'
 export default {
   components: {
-    BaseStart,
-    EmptyOrder
+    BaseStart
 },
   setup() {
     emitter.emit('changeLoadingState', true)

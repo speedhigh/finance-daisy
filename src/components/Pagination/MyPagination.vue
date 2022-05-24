@@ -72,20 +72,20 @@
     </button>
     <!-- Go -->
     <div class="ml-2 flex items-center space-x-2">
-      <div class="bg-white text-sm text-gray-600">前往</div>
+      <div class="text-sm text-gray-600">前往</div>
       <input
         v-model="goValue"
         type="number"
-        class="input input-bordered w-14 h-8 focus:border-primary"
+        class="input input-bordered w-14 h-8 focus:border-primary text-center"
         @keyup.enter="enter"
       >
-      <div class="bg-white text-sm text-gray-600">页</div>
+      <div class="text-sm text-gray-600">页</div>
     </div>
   </div>
 </template>
 
 <script>
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 export default {
   emits: ['change'],
   props: {
@@ -110,10 +110,16 @@ export default {
     }
   },
   setup(props, { emit }) {
-    const goValue = ref('')
+    const goValue = ref(props.currentPage)
     const totalPages = computed(() => Math.ceil(props.total / props.size))
     // 当前页码
     const currentNo = ref(props.currentPage)
+    // watch(totalPages.value, (value) => {
+    //   console.log(value)
+    //   if(value > totalPages.value) {
+    //     currentNo.value = totalPages.value
+    //   }
+    // })
     // 计算中间连续页码的开始、结束位置
     const startEnd = computed(() => {
       let start = 0, end = 0
@@ -154,11 +160,11 @@ export default {
       // 点击鼠标跳转
       go(goIndex) {
         if(['-1', '+1'].includes(goIndex)) {
-          currentNo.value = goIndex - 0 + currentNo.value
-          if(currentNo.value < 1) currentNo.value = 1
-          if(currentNo.value > totalPages.value) currentNo.value = totalPages.value
+          currentNo.value = goValue.value =  goIndex - 0 + currentNo.value
+          if(currentNo.value < 1) currentNo.value = goValue.value = 1
+          if(currentNo.value > totalPages.value) currentNo.value = goValue.value = totalPages.value
         } else {
-          currentNo.value = goIndex - '0'
+          currentNo.value = goValue.value = goIndex - '0'
         }
         emit('change', currentNo.value)
       },
@@ -173,11 +179,13 @@ export default {
       changeArrow(state) {
         if(state === 'next') {
           currentNo.value += props.continues
-          if(currentNo.value > totalPages.value) currentNo.value = totalPages.value
+          goValue.value += props.continues
+          if(currentNo.value > totalPages.value) currentNo.value = goValue.value = totalPages.value
         }
         if(state === 'last') {
           currentNo.value -= props.continues
-          if(currentNo.value < 1) currentNo.value = 1
+          goValue.value -= props.continues
+          if(currentNo.value < 1) currentNo.value = goValue.value = 1
         }
         emit('change', currentNo.value)
       }
@@ -188,10 +196,10 @@ export default {
 
 <style scoped>
   .btn { 
-    @apply bg-white text-gray-800 border-white font-normal hover:text-primary-focus hover:font-bold
+    @apply bg-[rgba(0,0,0,0)] text-gray-800 border-none font-normal hover:text-primary-focus hover:font-bold
   }
   .btn-active {
-    @apply bg-white text-primary-focus font-extrabold
+    @apply text-primary-focus font-extrabold
   }
   .btn-disabled {
     @apply text-gray-400 cursor-default

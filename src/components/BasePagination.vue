@@ -1,8 +1,9 @@
 <template>
   <div>
     <slot v-if="localList.length > 0" :list="localList" />
-    <div v-if="showEmpty" class="flex items-center justify-center">
-      <base-empty text="暂无信息" class="mb-48 py-12" />
+    <div v-if="showEmpty" class="w-full h-full flex flex-col justify-center items-center py-12">
+      <empty-order  class="w-96 h-96" />
+      <p class="opacity-40">暂无内容</p>
     </div>
     <div class="flex justify-center mt-4">
       <my-pagination
@@ -19,6 +20,7 @@
 import { ref, watch } from 'vue'
 import mitt from 'mitt'
 import api from '/src/api/index.js'
+import emitter from '/src/until/eventbus'
 import { pickBy } from 'lodash'
 import MyPagination from './Pagination/MyPagination.vue'
 export default {
@@ -40,6 +42,7 @@ export default {
     }
   },
   setup(props) {
+    emitter.emit('changeLoadingState', true)
     const BasePaginationMitt = mitt()
     BasePaginationMitt.on('refresh',() => { askApi() })
     const showEmpty = ref(false)
@@ -60,18 +63,21 @@ export default {
           localList.value = []
         }
       })
+      setTimeout(() => {emitter.emit('changeLoadingState', false)}, 150)
     }
     askApi()
     watch(props.params, (value) => {
-      console.log('params',value)
+      emitter.emit('changeLoadingState', true)
       askApi(false)
     }, {
       deep: true
     })
     watch(() => props.size, value => {
+      emitter.emit('changeLoadingState', true)
       askApi()
     })
     watch(() => props.url, value => {
+      emitter.emit('changeLoadingState', true)
       askApi()
     })
     return {

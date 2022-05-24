@@ -7,11 +7,13 @@ const app = createApp(App)
 
 import BaseChart from './components/BaseChart.vue'
 import BaseDropdown from './components/BaseDropdown.vue'
+import BaseInput from './components/BaseInput.vue'
 import EmptyData from './components/Empty/EmptyData.vue'
 import EmptyOrder from './components/Empty/EmptyOrder.vue'
 
 app.component('BaseChart', BaseChart)
 app.component('BaseDropdown', BaseDropdown)
+app.component('BaseInput', BaseInput)
 app.component('EmptyData', EmptyData)
 app.component('EmptyOrder', EmptyOrder)
 

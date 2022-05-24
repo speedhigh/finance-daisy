@@ -11,13 +11,13 @@
         type="text" 
         readonly
         placeholder="请选择"
-        class="cursor-pointer input input-sm input-bordered w-48 hover:border-gray-400"
+        class="cursor-pointer input input-sm input-bordered w-48 hover:border-gray-400 placeholder:text-gray-300"
         :class="{'border-gray-400': hover === true && !selValue, 'shadow-sm shadow-indigo-400': selValue}"
       />
       <!-- 清除按钮 -->
       <svg
         v-show="selValue"
-        xmlns="http://www.w3.org/2000/svg" 
+        xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5 text-gray-300 absolute right-2 top-1.5 cursor-pointer hover:text-gray-400"
         viewBox="0 0 20 20" 
         fill="currentColor"
@@ -44,7 +44,7 @@
             :key="index"
             class="p-2 rounded-md cursor-pointer"
             :class="index === active ? 'text-white bg-indigo-500' : 'hover:bg-gray-200'"
-            @click="confirm(item.label, index)"
+            @click="confirm(item.label, item.value, index)"
           >
             {{ item.label }}
           </li>
@@ -58,6 +58,10 @@
 import { ref } from 'vue'
 export default {
   props: {
+    modelValue: {
+      type: String,
+      default: ''
+    },
     options: {
       type: Array,
       required: true
@@ -67,7 +71,7 @@ export default {
       default: ''
     }
   },
-  emits: ['change'],
+  // emits: ['change'],
   setup(props, { emit }) {
     const active = ref(-1)
     const hover = ref(false)
@@ -76,16 +80,16 @@ export default {
       active,
       hover,
       selValue,
-      confirm(label, index) {
+      confirm(label, value, index) {
         active.value = index
         selValue.value = label
-        emit('change', label, index)
+        emit('update:modelValue', value)
         setTimeout(() => hover.value = false, 50)
       },
       clear() {
         active.value = -1
         selValue.value = ''
-        emit('clear')
+        emit('update:modelValue', '')
       }
     }
   }
