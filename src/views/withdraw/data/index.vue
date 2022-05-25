@@ -77,6 +77,12 @@
           class="input input-sm input-bordered w-32 hover:border-gray-400 focus:border-gray-500 pr-0"
         />
       </div>
+      <!-- 导出excel -->
+      <button class="btn btn-accent mb-2 mx-2 btn-sm" :disabled="btnDisabled" @click="exportTable">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd" />
+        </svg><span class="ml-1">导出excel</span>
+      </button>
     </div>
 
     <!-- table -->
@@ -171,7 +177,11 @@
 
 <script>
 import { ref } from 'vue'
+import { pickBy } from 'lodash'
 import api from '/src/api/index.js'
+import emitter from '/src/until/eventbus'
+import Message from '/src/components/Message/Message.js'
+import downLoadXls from '/src/until/downLoadXls.js'
 import { useRoute } from 'vue-router'
 import BaseDatepicker from '/src/components/BaseDatepicker.vue'
 import BasePagination from '/src/components/BasePagination.vue'
@@ -189,6 +199,7 @@ export default {
     api.get('/home/getAllCompany').then((res) => {
       companyOptions.value = res.data.data
     })
+    const btnDisabled = ref(false)
     const params = ref({
       id: route.query.id ? route.query.id : '',
       userId: '',
@@ -206,6 +217,7 @@ export default {
       size,
       urlArr,
       companyOptions,
+      btnDisabled,
       params,
       dateChange(start, end) {
         params.value.startTime = start
@@ -213,7 +225,26 @@ export default {
       },
       clearDate() {
         params.value.startTime = params.value.endTime = ''
-      }
+      },
+      exportTable() {
+        btnDisabled.value = true
+        emitter.emit('changeLoadingState', true)
+        if(active.value === 0) {
+          api.getBlob('/excel/getTiXians_ToExcel', pickBy(params.value)).then((res) => {
+            downLoadXls(res)
+            emitter.emit('changeLoadingState', false)
+            btnDisabled.value = false
+          })
+        }
+        if(active.value === 1) {
+          api.getBlob('/excel/getTiXians_NewB_ToExcel', pickBy(params.value)).then((res) => {
+            downLoadXls(res)
+            Message({ text: '导出成功!', type: 'success' })
+            emitter.emit('changeLoadingState', false)
+            btnDisabled.value = false
+          })
+        }
+      },
     }
   }
 }

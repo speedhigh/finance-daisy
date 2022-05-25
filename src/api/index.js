@@ -49,6 +49,19 @@ http.interceptors.response.use(
 
 const api = {}
 
+api.getBlob = function(url, params) {
+  return new Promise((resolve) => {
+    http({ 
+      method: "get", 
+      url: url, 
+      params:params,
+      responseType: "blob"
+    }).then((res) => { 
+      resolve(res) 
+    })
+  })
+}
+
 api.get = function(url, params) {
   if (params) {
     return new Promise((resolve) => {

@@ -135,7 +135,7 @@ export default {
     // 总成交量
     const numCharts = reactive({
       show: false,
-      options: barChartOptions(), 
+      options: barChartOptions(),
     })
     api.get('/home/getTotalChengJiaoNum').then((res) => {
       let arr = JSON.parse(res.data.data)
@@ -161,7 +161,7 @@ export default {
     // 总收益
     const expendCharts = reactive({
       show: false,
-      options: lineChartOptions(), 
+      options: lineChartOptions(),
     })
     api.get('/home/getTotalZhiChuMoney').then((res) => {
       let arr = JSON.parse(res.data.data)
@@ -173,7 +173,7 @@ export default {
 
     // 待办信息
     const todoList = ref([])
-    api.get('/home/getToDoInformations').then((res) => { 
+    api.get('/home/getToDoInformations').then((res) => {
       todoList.value = res.data.data
       loadingNum.value += 1
     })

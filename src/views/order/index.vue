@@ -76,6 +76,12 @@
           class="input input-sm input-bordered w-32 hover:border-gray-400 focus:border-gray-500 pr-0"
         />
       </div>
+      <!-- 导出excel -->
+      <button class="btn btn-accent mb-2 mx-2 btn-sm" :disabled="btnDisabled" @click="exportTable">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd" />
+        </svg><span class="ml-1">导出excel</span>
+      </button>
     </div>
 
     <base-pagination url="/home/getOrdersAllPage" :params="params" :size="size">
@@ -120,15 +126,15 @@
                 <td>{{ item.orderId }}</td>
                 <!-- SKU -->
                 <td class="space-y-3">
-                  <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.sku }} </p>
+                  <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.sku }}</p>
                 </td>
                 <!-- 药品名 -->
                 <td class="space-y-3">
-                  <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.stitle }} </p>
+                  <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.stitle }}</p>
                 </td>
                 <!-- 数量 -->
                 <td class="space-y-3">
-                  <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.num }} </p>
+                  <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.num }}</p>
                 </td>
                 <!-- 药品单价（HK$） -->
                 <td class="space-y-3">
@@ -165,6 +171,10 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import api from '/src/api/index.js'
+import { pickBy } from 'lodash'
+import emitter from '/src/until/eventbus'
+import downLoadXls from '/src/until/downLoadXls.js'
+import Message from '/src/components/Message/Message.js'
 import BaseDatepicker from '/src/components/BaseDatepicker.vue'
 import BasePagination from '/src/components/BasePagination.vue'
 export default {
@@ -193,16 +203,28 @@ export default {
       logisticsNum: '',
       state: ''
     })
+    const btnDisabled = ref(false)
     return {
       companyOptions,
       size,
       params,
+      btnDisabled,
       dateChange(start, end) {
         params.value.startTime = start
         params.value.end = end
       },
       clearDate() {
         params.value.startTime = params.value.endTime = ''
+      },
+      exportTable() {
+        btnDisabled.value = true
+        emitter.emit('changeLoadingState', true)
+        api.getBlob('/excel/getOrdersAllPage_ToExcel_Poi', pickBy(params.value)).then((res) => {
+          downLoadXls(res)
+          btnDisabled.value = false
+          Message({ text: '导出成功!', type: 'success' })
+          emitter.emit('changeLoadingState', false)
+        })
       }
     }
   }
