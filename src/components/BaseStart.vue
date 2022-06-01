@@ -38,7 +38,7 @@
       <div class="stat-figure text-secondary">
         <div class="avatar online">
           <div class="w-16 rounded-full">
-            <img src="https://api.lorem.space/image/fashion?w=128&h=128" />
+            <img src="https://api.lorem.space/image/fashion?w=128&h=128" alt="代办信息" />
           </div>
         </div>
       </div>

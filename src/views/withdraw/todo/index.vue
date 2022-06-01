@@ -3,20 +3,20 @@
 
     <!-- tabs -->
     <div class="tabs">
-      <a
+      <div
         class="tab tab-bordered"
         :class="{'tab-active': active === 0}"
         @click="active = 0"
       >
         大客户待办信息
-      </a> 
-      <a 
+      </div> 
+      <div 
         class="tab tab-bordered"
         :class="{'tab-active': active === 1}"
         @click="active = 1"
       >
         高级经理待办信息
-      </a> 
+      </div> 
     </div>
 
     <!-- filter -->

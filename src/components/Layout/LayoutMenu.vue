@@ -1,7 +1,7 @@
 <template>
   <div class="w-60 bg-white rounded-box shadow-2xl h-[92vh]">
     <div class="px-7 py-5 flex space-x-2">
-      <img src="/src/assets/logo.png" alt="logo" class="flex-shrink-0 w-10 h-10">
+      <div class="w-10 h-10 rounded-lg bg-primary-focus text-white text-center leading-10 text-3xl">木</div>
       <div class="space-y-1">
         <h1>香港木子网</h1>
         <p class="text-xs leading-none">muzimed.com</p>

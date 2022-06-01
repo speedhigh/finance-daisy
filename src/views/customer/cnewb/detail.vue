@@ -5,7 +5,7 @@
       <h2>大客户资料</h2>
       <div class="mt-6 flex space-x-6">
         <div class="flex-shrink-0 w-[73px]">
-          <img src="https://api.lorem.space/image/fashion?w=73&h=73" class="rounded-full" />
+          <img src="https://api.lorem.space/image/fashion?w=73&h=73" :alt="info.yonghuming" class="rounded-full" />
         </div>
         <div class="mt-1 flex-grow space-y-4">
           <p class="text-2xl">{{ info.yonghuming }}</p>
