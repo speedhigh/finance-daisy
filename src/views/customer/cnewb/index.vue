@@ -23,7 +23,7 @@
     <base-pagination
       url="/home/getNewBigsPage" 
       :params="params" 
-      size="10" 
+      :size="10" 
       class="mt-4"
     >
       <template #default="slotProps">

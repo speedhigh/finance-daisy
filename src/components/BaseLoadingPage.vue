@@ -1,5 +1,3 @@
-
-   
 <template>
   <div class="flex items-center justify-center h-screen relative bg-[rgba(255,255,255,0.8)]">
     <section class="absolute overflow-hidden">

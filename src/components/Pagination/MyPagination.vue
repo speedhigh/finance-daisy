@@ -73,12 +73,14 @@
     <!-- Go -->
     <div class="ml-2 flex items-center space-x-2">
       <div class="text-sm text-gray-600">前往</div>
-      <input
-        v-model="goValue"
-        type="number"
-        class="input input-bordered w-14 h-8 focus:border-primary text-center"
-        @keyup.enter="enter"
-      >
+      <label>
+        <input
+          v-model="goValue"
+          type="number"
+          class="input input-bordered w-14 h-8 focus:border-primary text-center"
+          @keyup.enter="enter"
+        >
+      </label>
       <div class="text-sm text-gray-600">页</div>
     </div>
   </div>
@@ -114,12 +116,11 @@ export default {
     const totalPages = computed(() => Math.ceil(props.total / props.size))
     // 当前页码
     const currentNo = ref(props.currentPage)
-    // watch(totalPages.value, (value) => {
-    //   console.log(value)
-    //   if(value > totalPages.value) {
-    //     currentNo.value = totalPages.value
-    //   }
-    // })
+    
+    watch(() => props.currentPage, (value) => {
+      currentNo.value = goValue.value = value
+    })
+
     // 计算中间连续页码的开始、结束位置
     const startEnd = computed(() => {
       let start = 0, end = 0

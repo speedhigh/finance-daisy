@@ -67,16 +67,21 @@ export default {
     }
     askApi()
     watch(props.params, (value) => {
+      console.log('changeParams', value)
       emitter.emit('changeLoadingState', true)
       askApi(false)
     }, {
       deep: true
     })
     watch(() => props.size, value => {
+      if(currentPage.value > Math.ceil(total.value/value)) {
+        currentPage.value = Math.ceil(total.value/value)
+      }
       emitter.emit('changeLoadingState', true)
       askApi()
     })
     watch(() => props.url, value => {
+      console.log('changeUrl', value)
       emitter.emit('changeLoadingState', true)
       askApi()
     })

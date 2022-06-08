@@ -55,7 +55,7 @@
       <!-- 账户/卡号 -->
       <base-input 
         v-model="params.accountNum"
-        width="300"
+        :width="300"
         title="账户/卡号"
         class="mb-2 mx-2"
       />
