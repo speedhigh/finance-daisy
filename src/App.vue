@@ -8,7 +8,7 @@
 input, button, select, textarea {
   outline: none !important
 }
-textarea { 
+textarea {
   resize: none !important
 }
 ::-webkit-scrollbar {

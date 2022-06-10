@@ -136,7 +136,7 @@
                 <td class="space-y-3">
                   <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.num }}</p>
                 </td>
-                <!-- 药品单价（HK$） -->
+                <!-- 药品单价（HK$）-->
                 <td class="space-y-3">
                   <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.iprice }}</p>
                 </td>
@@ -144,11 +144,11 @@
                 <td class="space-y-3">
                   <p v-for="(i, idx) in item.productInfoList" :key="idx">{{ i.totalPrice }}</p>
                 </td>
-                <!-- 订单总金额（HK$） -->
+                <!-- 订单总金额（HK$）-->
                 <td>{{ item.orderPriceHK }}</td>
                 <!-- 汇率 -->
                 <td>{{ item.exchangeRates }}</td>
-                <!-- 订单总金额（￥） -->
+                <!-- 订单总金额（￥）-->
                 <td>{{ item.orderPriceRMB }}</td>
                 <!-- 客户收益 -->
                 <td>{{ item.profit }}</td>

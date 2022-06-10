@@ -1,7 +1,4 @@
-import {
-  createVNode,
-  render
-} from "vue"
+import { createVNode, render } from "vue"
 
 import dialog from './Dialog.vue'
 
@@ -12,6 +9,7 @@ div.setAttribute('class', 'dialog-container')
 document.body.appendChild(div)
 
 export default ({
+  showCancel,
   title,
   text
 }) => {
@@ -38,6 +36,7 @@ export default ({
 
     // 在此处才创建节点并挂载属性
     const VNode = createVNode(dialog, {
+      showCancel,
       title,
       text,
       submitCallback,

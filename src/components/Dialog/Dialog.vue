@@ -10,7 +10,8 @@
       <p class="font-bold text-2xl">{{ title }}</p>
       <p class="mt-4 text-lg">{{ text }}</p>
       <div class="mt-5 text-right space-x-2">
-        <button 
+        <button
+          v-show="showCancel"
           class="btn btn-outline border-primary-focus text-primary-focus hover:bg-primary-focus hover:text-white hover:border-none"
           @click.stop="cancelCallback"
         >
@@ -39,6 +40,10 @@ export default {
     text: {
       type: String,
       default: ""
+    },
+    showCancel: {
+      type: Boolean,
+      default: true
     },
     submitCallback: {
       type: Function // 确认事件

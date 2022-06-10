@@ -1,6 +1,7 @@
 import axios from 'axios'
 import router from '../router'
 import NProgress from 'nprogress'
+import Dialog from '/src/components/Dialog/Dialog.js'
 import 'nprogress/nprogress.css'
 import qs from 'qs'
 const baseURL = import.meta.env.VITE_APP_URL
@@ -29,8 +30,11 @@ http.interceptors.response.use(
     NProgress.done()
     if(res.data.code === 20002 && window.sessionStorage.getItem("token")) {
       window.sessionStorage.removeItem("token")
-      alert('登录超时，请重新登录')
-      router.push('/login') 
+      Dialog({ text: '登录超时，请重新登录', showCancel: false }).then(() => {
+        sessionStorage.removeItem('token')
+        router.push('/login')
+        location.reload()
+      })
     }
     return res
   },
