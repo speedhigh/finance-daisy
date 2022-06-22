@@ -7,7 +7,7 @@
         <p class="text-xs leading-none">muzimed.com</p>
       </div>
     </div>
-    <ul class="menu bg-base-100 p-2 rounded-box px-2 text-gray-500 text-sm">
+    <ul class="menu bg-base-100 p-2 rounded-box text-gray-500 text-sm">
       <!-- 首页 -->
       <li>
         <router-link to="/" class="option" :class="{ 'option-sel': $route.meta.name === 'Home' }">

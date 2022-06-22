@@ -99,7 +99,10 @@
             <div class="flex-shrink-0 pt-5 pb-3.5 mr-2">
               <div class="w-2 h-2 rounded-full bg-gray-400" />
             </div>
-            <router-link to="/withdraw/todo" class="flex-grow flex items-center pt-5 pb-3.5 border-b border-gray-200">
+            <router-link 
+              to="/withdraw/todo" 
+              class="flex-grow flex items-center pt-5 pb-3.5 border-b border-gray-200"
+            >
               <p class="flex-grow mr-4 text-gray-500 line-1">{{ item.shuoming }}</p>
               <p class="ml-auto flex-shrink-0 text-gray-500">{{ item.zhuangtai }}</p>
             </router-link>

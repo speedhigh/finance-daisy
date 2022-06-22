@@ -10,7 +10,7 @@ const routes = [
   /** -----登录页----- **/
   {
     path: '/login',
-    name: 'login',
+    name: 'Login',
     component:() => import('../views/login/index.vue')
   },
 
@@ -80,6 +80,13 @@ const routes = [
         }
       }
     ]
+  },
+
+  // swiper
+  {
+    path: '/swiper',
+    name: 'Swiper',
+    component:() => import('../views/swiper/index.vue'),
   },
 
 
