@@ -115,7 +115,7 @@ export default {
       params,
       dateChange(start, end) {
         params.value.startTime = start
-        params.value.end = end
+        params.value.endTime = end
       },
       clearDate() {
         params.value.startTime = params.value.endTime = ''
